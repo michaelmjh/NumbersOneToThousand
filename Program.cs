@@ -21,6 +21,13 @@ namespace NumbersOneToThousand
                 int hundredsCounter = 0;
                 int tensCounter = 0;
                 bool andUsed = false;
+                bool doNotUseAnd = false;
+
+                // if number is less than 100, do not print the word "and" 
+                if (x < 100)
+                {
+                    doNotUseAnd = true;
+                }
 
                 if (remainingToDeduct > 999)
                 {
@@ -30,6 +37,7 @@ namespace NumbersOneToThousand
 
                 if (remainingToDeduct > 99)
                 {
+
                     while (remainingToDeduct > 99)
                     {
                         remainingToDeduct -= 100;
@@ -41,6 +49,12 @@ namespace NumbersOneToThousand
 
                 if (remainingToDeduct > 19)
                 {
+                    if (!andUsed && !doNotUseAnd)
+                    {
+                        Console.Write($"and ");
+                        andUsed = true;
+                    }
+
                     while (remainingToDeduct > 9)
                     {
                         remainingToDeduct -= 10;
@@ -49,9 +63,14 @@ namespace NumbersOneToThousand
                     Console.Write($"{tens[tensCounter]} ");
                 }
 
-           
                 if (remainingToDeduct > 0)
                 {
+                    if (!andUsed && !doNotUseAnd)
+                    {
+                        Console.Write($"and ");
+                        andUsed = true;
+                    }
+
                     Console.Write($"{singleDigits[remainingToDeduct]}");
                     remainingToDeduct -= 1;
                 }
